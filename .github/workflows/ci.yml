@@ -27,7 +27,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: ghcr.io/${{GITHUB_REPOSITORY}}:latest
+          tags: ghcr.io/${{ github.repository }}:latest
           # https://github.com/docker/build-push-action/blob/master/docs/advanced/cache.md
           cache-from: type=registry,ref=ghcr.io/firefly2442/aurora4x-docker:latest
           cache-to: type=inline
@@ -37,7 +37,7 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           ignore-unfixed: true
-          image-ref: 'ghcr.io/${{GITHUB_REPOSITORY}}:latest'
+          image-ref: 'ghcr.io/${{ github.repository }}:latest'
           format: 'sarif'
           output: 'trivy-results.sarif'
       - name: Upload Trivy scan results to GitHub Security tab
